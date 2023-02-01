@@ -22,5 +22,25 @@
   
 <img src="audi-rs4-by-abt-lead-image.jpg" alt="de.motor1.com" width="104" height="142">
 
+<div id="btc-price"></div>
+
+<script>
+  const url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=BTC";
+  const apiKey = "YOUR_API_KEY_HERE";
+
+  fetch(url, {
+    method: "GET",
+    headers: {
+      "X-CMC_PRO_API_KEY": apiKey
+    }
+  })
+  .then(response => response.json())
+  .then(data => {
+    const btcPrice = data.data.BTC.quote.USD.price;
+    document.getElementById("btc-price").innerHTML = "$" + btcPrice;
+  })
+  .catch(error => console.log(error));
+</script>
+
 </body>
 </html>
